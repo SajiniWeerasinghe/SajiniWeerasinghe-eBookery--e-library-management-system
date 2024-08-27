@@ -15,7 +15,7 @@ const Footer = () => {
       }}
     >
       <Typography variant="body2" color="textSecondary" >
-        © {new Date().getFullYear()} Library Central. All rights
+        © {new Date().getFullYear()} eBookery. All rights
         reserved.
       </Typography>
     </footer>

@@ -14,43 +14,43 @@ import LibraryBooksIcon from "@mui/icons-material/LibraryBooks";
 import ImportContactsIcon from "@mui/icons-material/ImportContacts";
 import SearchIcon from "@mui/icons-material/Search";
 import RateReviewIcon from "@mui/icons-material/RateReview";
-import backgroundImage from "../images/background.jpg";
+import backgroundImage from "../images/back2.jpg";
 
 const features = [
   {
     title: "Manage E-books",
     description:
       "Librarians can create and delete e-books within various sections of the library.",
-    icon: <LibraryBooksIcon sx={{ fontSize: 40, color: "#0c174a" }} />,
+    icon: <LibraryBooksIcon sx={{ fontSize: 40, color: "#3b2402" }} />,
   },
   {
     title: "User Account Management",
     description:
       "Librarians can manage user accounts, roles, and monitor user activity.",
-    icon: <ManageAccountsIcon sx={{ fontSize: 40, color: "#0c174a" }} />,
+    icon: <ManageAccountsIcon sx={{ fontSize: 40, color: "#3b2402" }} />,
   },
   {
     title: "Grant/Revoke Access",
     description:
       "Librarians can handle the issuing and returning process of e-books for users.",
-    icon: <ImportContactsIcon sx={{ fontSize: 40, color: "#0c174a" }} />,
+    icon: <ImportContactsIcon sx={{ fontSize: 40, color: "#3b2402" }} />,
   },
   {
     title: "Search Library Catalog",
     description:
       "Users can easily search for e-books and resources available in the library.",
-    icon: <SearchIcon sx={{ fontSize: 40, color: "#0c174a" }} />,
+    icon: <SearchIcon sx={{ fontSize: 40, color: "#3b2402" }} />,
   },
   {
     title: "Request E-books",
     description:
       "Users can request access to e-books and manage their requests.",
-    icon: <ImportContactsIcon sx={{ fontSize: 40, color: "#0c174a" }} />,
+    icon: <ImportContactsIcon sx={{ fontSize: 40, color: "#3b2402" }} />,
   },
   {
     title: "Rate and Review E-books",
     description: "Users can rate and review e-books they have read.",
-    icon: <RateReviewIcon sx={{ fontSize: 40, color: "#0c174a" }} />,
+    icon: <RateReviewIcon sx={{ fontSize: 40, color: "#3b2402" }} />,
   },
 ];
 
@@ -78,12 +78,12 @@ const FeatureCard = styled(Card)({
   padding: "20px",
   textAlign: "left",
   borderRadius: "16px",
-  backgroundColor: "#a6dcef",
+  backgroundColor: "#a67124",
   color: "#0c174a",
   cursor: "pointer",
   transition: "background-color 0.3s ease-in-out, color 0.3s ease-in-out",
   "&:hover": {
-    backgroundColor: "#0c174a",
+    backgroundColor: "#3b2402",
     color: "#ffffff",
   },
 });
@@ -99,13 +99,13 @@ const Home = () => {
           sx={{
             fontWeight: "bold",
             fontFamily: "Poppins, sans-serif",
-            background: "linear-gradient(to right, #5868f5, #020a21)",
+            background: "linear-gradient(to right,  #613e0a, #3b2402)",
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent",
             WebkitTextStroke: "1px white",
           }}
         >
-          Welcome to Library Central
+          Welcome to eBookery
         </Typography>
       </BackgroundSection>
       <FeaturesSection>
@@ -126,12 +126,14 @@ const Home = () => {
                       sx={{
                         fontWeight: "bold",
                         fontFamily: "Montserrat, sans-serif",
+                        
                       }}
                     >
                       {feature.title}
                     </Typography>
                     <Typography
                       variant="body2"
+                      
                     >
                       {feature.description}
                     </Typography>
