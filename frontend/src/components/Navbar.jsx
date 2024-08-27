@@ -37,7 +37,7 @@ const Navbar = () => {
           transition: "transform 0.2s",
         }
       : {
-          color: "#52360d",
+          color: "#3b2402",
         };
   };
 
