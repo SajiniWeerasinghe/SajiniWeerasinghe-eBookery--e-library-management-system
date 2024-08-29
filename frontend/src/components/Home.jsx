@@ -78,8 +78,8 @@ const FeatureCard = styled(Card)({
   padding: "20px",
   textAlign: "left",
   borderRadius: "16px",
-  backgroundColor: "#a67124",
-  color: "#0c174a",
+  backgroundColor: "#cfa05b",
+  color: "#3b2402",
   cursor: "pointer",
   transition: "background-color 0.3s ease-in-out, color 0.3s ease-in-out",
   "&:hover": {
@@ -105,7 +105,8 @@ const Home = () => {
             WebkitTextStroke: "1px white",
           }}
         >
-          Welcome to eBookery
+          Welcome to eBookery <br/><br/>
+          E-Library Management System
         </Typography>
       </BackgroundSection>
       <FeaturesSection>
