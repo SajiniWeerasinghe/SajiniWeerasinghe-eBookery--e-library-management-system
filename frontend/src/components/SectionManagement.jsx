@@ -157,6 +157,12 @@ const SectionManagement = () => {
         sx={{ marginBottom: 2 }}
         fullWidth
         required
+        InputLabelProps={{
+          style: { color: "#5b320a" }, // Dark Brown
+        }}
+        InputProps={{
+          style: { color: "#5b320a" }, // Dark Brown
+        }}
       />
       <TextField
         label="Description"
@@ -165,46 +171,83 @@ const SectionManagement = () => {
         onChange={handleChange}
         sx={{ marginBottom: 2 }}
         fullWidth
+        InputLabelProps={{
+          style: { color: "#5b320a" }, // Dark Brown
+        }}
+        InputProps={{
+          style: { color: "#5b320a" }, // Dark Brown
+        }}
       />
       <Button
         onClick={addSection}
         variant="contained"
-        color="primary"
-        sx={{ marginBottom: 2 }}
+        sx={{ marginBottom: 2, backgroundColor: "#613e0a", color: "#FFF"  ,"&:hover": {
+                        backgroundColor: "#4a2b07",
+                        transition: "transform 1.3s ease-out, background-color 0.3s ease-out",
+                      },}} // Pinkish Red
       >
         Add Section
       </Button>
       {sections.length > 0 ? (
         <TableContainer
           component={Paper}
-          sx={{ border: "1px solid #ccc", marginTop: 2, marginBottom: 10 }}
+          sx={{
+            border: "1px solid #ccc",
+            marginTop: 2,
+            marginBottom: 10,
+            backgroundColor: "#F9F9F9", // Light Grey
+            
+          }}
         >
           <Table>
             <TableHead>
-              <TableRow>
-                <TableCell sx={{ fontWeight: "bold" }}>Section Name</TableCell>
-                <TableCell sx={{ fontWeight: "bold" }}>Description</TableCell>
-                <TableCell sx={{ fontWeight: "bold" }}>Date Created</TableCell>
-                <TableCell sx={{ fontWeight: "bold" }}>Actions</TableCell>
+              <TableRow sx={{ backgroundColor: "#d28b19",}}>
+                <TableCell sx={{ fontWeight: "bold", color: "#fff", borderRight: "1px solid #ccc" }}>
+                  Section Name
+                </TableCell>
+                <TableCell sx={{ fontWeight: "bold", color: "#fff", borderRight: "1px solid #ccc" }}>
+                  Description
+                </TableCell>
+                <TableCell sx={{ fontWeight: "bold", color: "#fff", borderRight: "1px solid #ccc" }}>
+                  Date Created
+                </TableCell>
+                <TableCell sx={{ fontWeight: "bold", color: "#fff", borderRight: "1px solid #ccc" }}>
+                  Actions
+                </TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
               {sections.map((section) => (
-                <TableRow key={section._id}>
-                  <TableCell>{section.name}</TableCell>
-                  <TableCell>{section.description}</TableCell>
-                  <TableCell>
+                <TableRow
+                  key={section._id}
+                  sx={{
+                    backgroundColor: "#FFF",
+                    // transition: "transform 0.2s ease-in-out",
+                    // transformOrigin: "center",
+                    "&:hover": {
+                    //   transform: "scale(1.02)",
+                      backgroundColor: "#f7e8d0", // Light Cream
+                    },
+                  }}
+                >
+                  <TableCell sx={{ padding: "10px", borderRight: "1px solid #ccc" }}>
+                    {section.name}
+                  </TableCell>
+                  <TableCell sx={{ padding: "10px", borderRight: "1px solid #ccc" }}>
+                    {section.description}
+                  </TableCell>
+                  <TableCell sx={{ padding: "10px", borderRight: "1px solid #ccc" }}>
                     {new Date(section.dateCreated).toLocaleString()}
                   </TableCell>
-                  <TableCell>
+                  <TableCell sx={{ padding: "10px" }}>
                     <IconButton
-                      color="primary"
+                      sx={{ color: "#8a4d19" }} // Green
                       onClick={() => handleEditOpen(section)}
                     >
                       <EditIcon />
                     </IconButton>
                     <IconButton
-                      color="error"
+                      sx={{ color: "#db2016" }} // Orange
                       onClick={() => handleDeleteClick(section)}
                     >
                       <DeleteIcon />
@@ -234,8 +277,8 @@ const SectionManagement = () => {
             left: "50%",
             transform: "translate(-50%, -50%)",
             width: 400,
-            bgcolor: "background.paper",
-            border: "2px solid #000",
+            bgcolor: "#FFF3E0", // Light Peach
+            border: "2px solid #d28b19", // Dark Yellow
             boxShadow: 24,
             p: 4,
           }}
@@ -253,7 +296,7 @@ const SectionManagement = () => {
             <CloseIcon />
           </IconButton>
           <Typography
-            sx={{ marginBottom: 2 }}
+            sx={{ marginBottom: 2, color: "#5b320a" }} // Dark Brown
             variant="h6"
             component="h2"
             gutterBottom
@@ -265,32 +308,41 @@ const SectionManagement = () => {
             name="name"
             value={editSection?.name || ""}
             onChange={handleEditChange}
-            sx={{ marginBottom: 2 }}
+            sx={{ marginBottom: 2 ,boxShadow: 1,}}
             fullWidth
             required
+            InputLabelProps={{
+              style: { color: "#5b320a" }, // Dark Brown
+            }}
+            InputProps={{
+              style: { color: "#5b320a" }, // Dark Brown
+            }}
           />
           <TextField
             label="Description"
             name="description"
             value={editSection?.description || ""}
             onChange={handleEditChange}
-            sx={{ marginBottom: 2 }}
+            sx={{ marginBottom: 2 ,boxShadow: 1,}}
             fullWidth
+            InputLabelProps={{
+              style: { color: "#5b320a" }, // Dark Brown
+            }}
+            InputProps={{
+              style: { color: "#5b320a" }, // Dark Brown
+            }}
           />
           <Button
             onClick={updateSection}
             variant="contained"
-            color="primary"
-            sx={{ marginRight: 1 }}
+            sx={{ backgroundColor: "#613e0a", 
+              '&:hover': {
+          backgroundColor: "#f4e2d3", 
+          color:"#613e0a"// Light brown on hover
+        },color: "#FFF" }} // Pinkish Red
+            fullWidth
           >
-            Save
-          </Button>
-          <Button
-            onClick={handleEditClose}
-            variant="contained"
-            color="secondary"
-          >
-            Cancel
+            Update Section
           </Button>
         </Box>
       </Modal>
@@ -298,21 +350,19 @@ const SectionManagement = () => {
       <Dialog
         open={openDialog}
         onClose={handleCloseDialog}
-        aria-labelledby="confirm-delete-dialog"
-        aria-describedby="confirm-delete-description"
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
       >
-        <DialogTitle id="confirm-delete-dialog">{"Delete Section"}</DialogTitle>
+        <DialogTitle id="alert-dialog-title">{"Delete Section"}</DialogTitle>
         <DialogContent>
-          <DialogContentText id="confirm-delete-description">
+          <DialogContentText id="alert-dialog-description">
             Are you sure you want to delete this section?
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleCloseDialog} color="primary">
-            Cancel
-          </Button>
-          <Button onClick={handleDeleteConfirm} color="error" autoFocus>
-            Confirm
+          <Button onClick={handleCloseDialog}>Cancel</Button>
+          <Button onClick={handleDeleteConfirm} color="secondary">
+            Delete
           </Button>
         </DialogActions>
       </Dialog>

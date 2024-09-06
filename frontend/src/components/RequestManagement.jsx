@@ -32,7 +32,6 @@ const RequestManagement = () => {
         setRequests(res.data);
       } catch (err) {
         console.error(err);
-      } finally {
       }
     };
     fetchRequests();
@@ -108,7 +107,18 @@ const RequestManagement = () => {
     <Container sx={{ paddingTop: 5 }}>
       {pendingRequests.length > 0 ? (
         <>
-          <Typography variant="h6" component="h2" gutterBottom sx={{ fontFamily: "Montserrat", color: "#d6d925", fontWeight: "bold" }}>
+          <Typography
+            variant="h6"
+            component="h2"
+            gutterBottom
+            sx={{
+              paddingTop: 5,
+          fontSize: 30,
+          fontWeight: 600,
+          textAlign: "center",
+          color: "#5b320a",
+            }}
+          >
             Pending Requests
           </Typography>
           <TableContainer
@@ -117,24 +127,32 @@ const RequestManagement = () => {
           >
             <Table>
               <TableHead>
-                <TableRow>
-                  <TableCell sx={{ fontWeight: "bold" }}>Book Name</TableCell>
-                  <TableCell sx={{ fontWeight: "bold" }}>Username</TableCell>
-                  <TableCell sx={{ fontWeight: "bold" }}>Action</TableCell>
+                <TableRow sx={{ backgroundColor: "#d28b19" }}>
+                  <TableCell sx={{ fontWeight: "bold", color: "#fff", borderRight: "1px solid #ccc" }}>Book Name</TableCell>
+                  <TableCell sx={{ fontWeight: "bold", color: "#fff", borderRight: "1px solid #ccc" }}>Username</TableCell>
+                  <TableCell sx={{ fontWeight: "bold", color: "#fff" }}>Action</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
-                {pendingRequests.map((request) => (
-                  <TableRow key={request._id}>
-                    <TableCell>
-                      {request.ebook?.name || "Unknown E-book"}
-                    </TableCell>
-                    <TableCell>{request.username}</TableCell>
+                {pendingRequests.map((request, index) => (
+                  <TableRow
+                    key={request._id}
+                    sx={{
+                      backgroundColor: index % 2 === 0 ? "#f9f9f9" : "#fff",
+                      "&:hover": {
+                        backgroundColor: "#f7e8d0",
+                        transition: "transform 1.3s ease-out, background-color 0.3s ease-out",
+                      },
+                    }}
+                  >
+                    <TableCell sx={{ padding: "10px", borderRight: "1px solid #ccc" }} >{request.ebook?.name || "Unknown E-book"}</TableCell>
+                    <TableCell sx={{ padding: "10px", borderRight: "1px solid #ccc" }}>{request.username}</TableCell>
                     <TableCell>
                       <Box sx={{ display: "flex", flexDirection: "row", gap: 1 }}>
                         <Button
                           onClick={() => handleRequest(request._id, "granted")}
                           variant="contained"
+                          sx={{ backgroundColor: "#124d0d", color: "#fff", "&:hover": { backgroundColor: "#298c20" } }} // Red color
                           color="primary"
                         >
                           Grant
@@ -142,6 +160,7 @@ const RequestManagement = () => {
                         <Button
                           onClick={() => handleRequest(request._id, "rejected")}
                           variant="contained"
+                          sx={{ backgroundColor: "#B22222", color: "#fff", "&:hover": { backgroundColor: "#FF0000" } }} // Red color
                           color="secondary"
                         >
                           Reject
@@ -166,7 +185,18 @@ const RequestManagement = () => {
       )}
       {grantedBooks.length > 0 ? (
         <>
-          <Typography variant="h6" component="h2" gutterBottom sx={{ fontFamily: "Montserrat", color: "#06781f", fontWeight: "bold" }}>
+          <Typography
+            variant="h6"
+            component="h2"
+            gutterBottom
+            sx={{
+              paddingTop: 5,
+          fontSize: 30,
+          fontWeight: 600,
+          textAlign: "center",
+          color: "#5b320a",
+            }}
+          >
             Granted Books
           </Typography>
           <TableContainer
@@ -175,25 +205,35 @@ const RequestManagement = () => {
           >
             <Table>
               <TableHead>
-                <TableRow>
-                  <TableCell sx={{ fontWeight: "bold" }}>Book Name</TableCell>
-                  <TableCell sx={{ fontWeight: "bold" }}>Username</TableCell>
-                  <TableCell sx={{ fontWeight: "bold" }}>Return Date</TableCell>
-                  <TableCell sx={{ fontWeight: "bold" }}>Action</TableCell>
+                <TableRow sx={{ backgroundColor: "#d28b19" }}>
+                  <TableCell sx={{ fontWeight: "bold", color: "#fff", borderRight: "1px solid #ccc" }}>Book Name</TableCell>
+                  <TableCell sx={{ fontWeight: "bold", color: "#fff", borderRight: "1px solid #ccc" }}>Username</TableCell>
+                  <TableCell sx={{ fontWeight: "bold", color: "#fff", borderRight: "1px solid #ccc" }}>Return Date</TableCell>
+                  <TableCell sx={{ fontWeight: "bold", color: "#fff" }}>Action</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
-                {grantedBooks.map((request) => (
-                  <TableRow key={request._id}>
-                    <TableCell>{request.ebook.name}</TableCell>
-                    <TableCell>{request.username}</TableCell>
-                    <TableCell>
+                {grantedBooks.map((request, index) => (
+                  <TableRow
+                    key={request._id}
+                    sx={{
+                      backgroundColor: index % 2 === 0 ? "#f9f9f9" : "#fff",
+                      "&:hover": {
+                        backgroundColor: "#f7e8d0",
+                        transition: "transform 1.3s ease-out, background-color 0.3s ease-out",
+                      },
+                    }}
+                  >
+                    <TableCell sx={{ padding: "10px", borderRight: "1px solid #ccc" }}>{request.ebook.name}</TableCell>
+                    <TableCell sx={{ padding: "10px", borderRight: "1px solid #ccc" }}>{request.username}</TableCell>
+                    <TableCell sx={{ padding: "10px", borderRight: "1px solid #ccc" }}>
                       {new Date(request.returnDate).toLocaleDateString()}
                     </TableCell>
                     <TableCell>
                       <Button
                         onClick={() => handleRevoke(request.ebook._id)}
                         variant="contained"
+                        sx={{ backgroundColor: "#B22222", color: "#fff", "&:hover": { backgroundColor: "#FF0000" } }} // Red color
                         color="secondary"
                       >
                         Revoke

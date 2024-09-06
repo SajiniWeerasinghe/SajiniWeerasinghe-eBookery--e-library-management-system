@@ -187,41 +187,51 @@ const LibrarianDashboard = () => {
           </Card>
         </Grid>
       </Grid>
-      <Typography variant="h6" gutterBottom sx={{ paddingTop: 5 }}>
+      <Typography variant="h6" gutterBottom sx={{ paddingTop: 5 ,fontSize: 30, fontWeight: 500, textAlign: "center", color: "#5b320a" }}>
         All Users
       </Typography>
       <TableContainer
-        component={Paper}
-        sx={{ border: "1px solid #ccc", marginTop: 2, marginBottom: 10 }}
-      >
-        <Table>
-          <TableHead>
-            <TableRow>
-              <TableCell sx={{ fontWeight: "bold" }}>Username</TableCell>
-              <TableCell sx={{ fontWeight: "bold" }}>Email</TableCell>
-              <TableCell sx={{ fontWeight: "bold" }}>Role</TableCell>
-              <TableCell sx={{ fontWeight: "bold" }}>Action</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {data.users.map((user) => (
-              <TableRow key={user._id}>
-                <TableCell>{user.username}</TableCell>
-                <TableCell>{user.email}</TableCell>
-                <TableCell>{user.role}</TableCell>
-                <TableCell>
-                  <IconButton
-                    color="error"
-                    onClick={() => handleDeleteClick(user)}
-                  >
-                    <DeleteIcon />
-                  </IconButton>
-                </TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
+  component={Paper}
+  sx={{ border: "1px solid #ccc", marginTop: 2, marginBottom: 10 }}
+>
+  <Table>
+    <TableHead>
+      <TableRow sx={{ backgroundColor: "#d28b19" }}>
+        <TableCell sx={{ fontWeight: "bold", color: "#fff", borderRight: "1px solid #ccc" }}>Username</TableCell>
+        <TableCell sx={{ fontWeight: "bold", color: "#fff", borderRight: "1px solid #ccc" }}>Email</TableCell>
+        <TableCell sx={{ fontWeight: "bold", color: "#fff", borderRight: "1px solid #ccc" }}>Role</TableCell>
+        <TableCell sx={{ fontWeight: "bold", color: "#fff" }}>Action</TableCell>
+      </TableRow>
+    </TableHead>
+    <TableBody>
+      {data.users.map((user, index) => (
+        <TableRow
+          key={user._id}
+          sx={{
+            backgroundColor: index % 2 === 0 ? "#f9f9f9" : "#fff",
+            // transition: "transform 0.2s ease-in-out",
+            // transformOrigin: "center",
+            "&:hover": {
+              // transform: "scale(1.02)",
+              backgroundColor: "#f7e8d0",
+              transition: "transform 1.3s ease-out, background-color 0.3s ease-out",
+            },
+          }}
+        >
+          <TableCell sx={{ padding: "10px", borderRight: "1px solid #ccc" }}>{user.username}</TableCell>
+          <TableCell sx={{ padding: "10px", borderRight: "1px solid #ccc" }}>{user.email}</TableCell>
+          <TableCell sx={{ padding: "10px", borderRight: "1px solid #ccc" }}>{user.role}</TableCell>
+          <TableCell sx={{ padding: "10px" }}>
+            <IconButton color="error" onClick={() => handleDeleteClick(user)}>
+              <DeleteIcon />
+            </IconButton>
+          </TableCell>
+        </TableRow>
+      ))}
+    </TableBody>
+  </Table>
+</TableContainer>
+
 
       <Dialog
         open={open}

@@ -81,22 +81,31 @@ const FeedbackManagement = () => {
         >
           <Table>
             <TableHead>
-              <TableRow>
-                <TableCell sx={{ fontWeight: "bold" }}>E-book Name</TableCell>
-                <TableCell sx={{ fontWeight: "bold" }}>Username</TableCell>
-                <TableCell sx={{ fontWeight: "bold" }}>Comment</TableCell>
-                <TableCell sx={{ fontWeight: "bold" }}>Rating</TableCell>
-                <TableCell sx={{ fontWeight: "bold" }}>Action</TableCell>
+              <TableRow sx={{ backgroundColor: "#d28b19" }}>
+                <TableCell  sx={{ fontWeight: "bold", color: "#fff", borderRight: "1px solid #ccc" }}>E-book Name</TableCell>
+                <TableCell  sx={{ fontWeight: "bold", color: "#fff", borderRight: "1px solid #ccc" }}>Username</TableCell>
+                <TableCell  sx={{ fontWeight: "bold", color: "#fff", borderRight: "1px solid #ccc" }}>Comment</TableCell>
+                <TableCell  sx={{ fontWeight: "bold", color: "#fff", borderRight: "1px solid #ccc" }}>Rating</TableCell>
+                <TableCell  sx={{ fontWeight: "bold", color: "#fff", borderRight: "1px solid #ccc" }}>Action</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
               {feedbacks.map((feedback) => (
-                <TableRow key={feedback._id}>
-                  <TableCell>{feedback.ebook}</TableCell>
-                  <TableCell>{feedback.username}</TableCell>
-                  <TableCell>{feedback.comment}</TableCell>
-                  <TableCell>{feedback.rating}</TableCell>
-                  <TableCell>
+                <TableRow key={feedback._id} sx={{
+                  backgroundColor: "#FFF",
+                  // transition: "transform 0.2s ease-in-out",
+                  // transformOrigin: "center",
+                  "&:hover": {
+                  //   transform: "scale(1.02)",
+                    backgroundColor: "#f7e8d0", // Light Cream
+                  },
+                }}
+                >
+                  <TableCell sx={{ padding: "10px", borderRight: "1px solid #ccc" }}>{feedback.ebook}</TableCell>
+                  <TableCell sx={{ padding: "10px", borderRight: "1px solid #ccc" }}>{feedback.username}</TableCell>
+                  <TableCell sx={{ padding: "10px", borderRight: "1px solid #ccc" }}>{feedback.comment}</TableCell>
+                  <TableCell sx={{ padding: "10px", borderRight: "1px solid #ccc" }}>{feedback.rating}</TableCell>
+                  <TableCell sx={{ padding: "10px", borderRight: "1px solid #ccc" }}>
                     <IconButton
                       color="error"
                       onClick={() => handleDeleteClick(feedback)}
