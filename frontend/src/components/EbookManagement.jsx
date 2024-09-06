@@ -17,8 +17,6 @@ import {
   MenuItem,
   Grid,
   InputAdornment,
-  Modal,
-  Box,
   Dialog,
   DialogActions,
   DialogContent,
@@ -29,7 +27,6 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import SearchIcon from "@mui/icons-material/Search";
 import ClearIcon from "@mui/icons-material/Clear";
-import CloseIcon from "@mui/icons-material/Close";
 import { toast } from "react-toastify";
 
 const EbookManagement = () => {
@@ -215,7 +212,7 @@ const EbookManagement = () => {
   const handleEditOpen = (ebook) => {
     setEditEbook({
       ...ebook,
-      section: ebook.section?._id || "", 
+      section: ebook.section?._id || "",
     });
     setOpen(true);
   };
@@ -227,6 +224,19 @@ const EbookManagement = () => {
 
   return (
     <Container sx={{ paddingTop: 5 }}>
+      <Typography
+        variant="h6"
+        gutterBottom
+        sx={{
+          paddingTop: 5,
+          fontSize: 30,
+          fontWeight: 500,
+          textAlign: "center",
+          color: "#5b320a",
+        }}
+      >
+        Manage E-books
+      </Typography>
       <TextField
         label="E-book Name"
         name="name"
@@ -235,6 +245,12 @@ const EbookManagement = () => {
         sx={{ marginBottom: 2 }}
         fullWidth
         required
+        InputLabelProps={{
+          style: { color: "#5b320a" }, // Dark Brown
+        }}
+        InputProps={{
+          style: { color: "#5b320a" }, // Dark Brown
+        }}
       />
       <TextField
         label="Content"
@@ -244,6 +260,12 @@ const EbookManagement = () => {
         sx={{ marginBottom: 2 }}
         fullWidth
         required
+        InputLabelProps={{
+          style: { color: "#5b320a" }, // Dark Brown
+        }}
+        InputProps={{
+          style: { color: "#5b320a" }, // Dark Brown
+        }}
       />
       <TextField
         label="Authors (comma separated)"
@@ -253,6 +275,12 @@ const EbookManagement = () => {
         sx={{ marginBottom: 2 }}
         fullWidth
         required
+        InputLabelProps={{
+          style: { color: "#5b320a" }, // Dark Brown
+        }}
+        InputProps={{
+          style: { color: "#5b320a" }, // Dark Brown
+        }}
       />
       <TextField
         select
@@ -263,6 +291,12 @@ const EbookManagement = () => {
         sx={{ marginBottom: 2 }}
         fullWidth
         required
+        InputLabelProps={{
+          style: { color: "#5b320a" }, // Dark Brown
+        }}
+        InputProps={{
+          style: { color: "#5b320a" }, // Dark Brown
+        }}
       >
         {sections.map((section) => (
           <MenuItem key={section._id} value={section._id}>
@@ -271,17 +305,34 @@ const EbookManagement = () => {
         ))}
       </TextField>
       <Button
-        onClick={addEbook}
         variant="contained"
         color="primary"
-        sx={{ marginBottom: 5 }}
+        onClick={addEbook}
+        sx={{
+          backgroundColor: "#613e0a",
+          '&:hover': { backgroundColor: "#4a2b07" }, // Darker shade of brown
+        }}
       >
         Add E-book
       </Button>
-      <Grid container spacing={2} sx={{ marginBottom: 3 }}>
+
+      <Typography
+        variant="h6"
+        gutterBottom
+        sx={{
+          marginTop: 5,
+          fontSize: 25,
+          fontWeight: 500,
+          textAlign: "center",
+          color: "#5b320a",
+        }}
+      >
+        E-book List
+      </Typography>
+      <Grid container spacing={2} sx={{ marginBottom: 2 }}>
         <Grid item xs={12} sm={4}>
           <TextField
-            label="Search Book Name"
+            label="Search by Name"
             name="bookName"
             value={searchCriteria.bookName}
             onChange={handleSearchChange}
@@ -289,26 +340,23 @@ const EbookManagement = () => {
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">
-                  <SearchIcon />
+                  <SearchIcon sx={{ color: "#5b320a" }} />
                 </InputAdornment>
               ),
               endAdornment: searchCriteria.bookName && (
                 <InputAdornment position="end">
-                  <IconButton
-                    onClick={() => handleClearSearch("bookName")}
-                    edge="end"
-                  >
-                    <ClearIcon />
+                  <IconButton onClick={() => handleClearSearch("bookName")}>
+                    <ClearIcon sx={{ color: "#5b320a" }} />
                   </IconButton>
                 </InputAdornment>
               ),
-              sx: { borderRadius: "20px" },
             }}
+            sx={{ marginBottom: 2 }}
           />
         </Grid>
         <Grid item xs={12} sm={4}>
           <TextField
-            label="Search Author Name"
+            label="Search by Author"
             name="authorName"
             value={searchCriteria.authorName}
             onChange={handleSearchChange}
@@ -316,26 +364,23 @@ const EbookManagement = () => {
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">
-                  <SearchIcon />
+                  <SearchIcon sx={{ color: "#5b320a" }} />
                 </InputAdornment>
               ),
               endAdornment: searchCriteria.authorName && (
                 <InputAdornment position="end">
-                  <IconButton
-                    onClick={() => handleClearSearch("authorName")}
-                    edge="end"
-                  >
-                    <ClearIcon />
+                  <IconButton onClick={() => handleClearSearch("authorName")}>
+                    <ClearIcon sx={{ color: "#5b320a" }} />
                   </IconButton>
                 </InputAdornment>
               ),
-              sx: { borderRadius: "20px" },
             }}
+            sx={{ marginBottom: 2 }}
           />
         </Grid>
         <Grid item xs={12} sm={4}>
           <TextField
-            label="Search Section Name"
+            label="Search by Section"
             name="sectionName"
             value={searchCriteria.sectionName}
             onChange={handleSearchChange}
@@ -343,173 +388,200 @@ const EbookManagement = () => {
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">
-                  <SearchIcon />
+                  <SearchIcon sx={{ color: "#5b320a" }} />
                 </InputAdornment>
               ),
               endAdornment: searchCriteria.sectionName && (
                 <InputAdornment position="end">
-                  <IconButton
-                    onClick={() => handleClearSearch("sectionName")}
-                    edge="end"
-                  >
-                    <ClearIcon />
+                  <IconButton onClick={() => handleClearSearch("sectionName")}>
+                    <ClearIcon sx={{ color: "#5b320a" }} />
                   </IconButton>
                 </InputAdornment>
               ),
-              sx: { borderRadius: "20px" },
             }}
+            sx={{ marginBottom: 2 }}
           />
         </Grid>
       </Grid>
-      {filteredBooks.length > 0 ? (
-        <TableContainer
-          component={Paper}
-          sx={{ border: "1px solid #ccc", marginTop: 2, marginBottom: 10 }}
-        >
-          <Table>
-            <TableHead>
-              <TableRow>
-                <TableCell sx={{ fontWeight: "bold" }}>E-book Name</TableCell>
-                <TableCell sx={{ fontWeight: "bold" }}>Authors</TableCell>
-                <TableCell sx={{ fontWeight: "bold" }}>Section</TableCell>
-                <TableCell sx={{ fontWeight: "bold" }}>Actions</TableCell>
+
+      <TableContainer component={Paper}>
+        <Table>
+          <TableHead>
+          <TableRow sx={{ backgroundColor: "#d28b19" }}>
+              <TableCell sx={{ fontWeight: "bold", color: "#fff", borderRight: "1px solid #ccc" }}>Name</TableCell>
+              <TableCell sx={{ fontWeight: "bold", color: "#fff", borderRight: "1px solid #ccc" }}>Authors</TableCell>
+              <TableCell sx={{ fontWeight: "bold", color: "#fff", borderRight: "1px solid #ccc" }}>Section</TableCell>
+              <TableCell sx={{ fontWeight: "bold", color: "#fff", borderRight: "1px solid #ccc" }}>Actions</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {filteredBooks.map((ebook) => (
+              <TableRow key={ebook._id} 
+              sx={{
+                backgroundColor: "#FFF",
+                // transition: "transform 0.2s ease-in-out",
+                // transformOrigin: "center",
+                "&:hover": {
+                //   transform: "scale(1.02)",
+                  backgroundColor: "#f7e8d0", // Light Cream
+                },
+              }}>
+                <TableCell sx={{ padding: "10px", borderRight: "1px solid #ccc" }}>{ebook.name}</TableCell>
+                <TableCell sx={{ padding: "10px", borderRight: "1px solid #ccc" }}>{ebook.authors.join(", ")}</TableCell>
+                <TableCell sx={{ padding: "10px", borderRight: "1px solid #ccc" }}>{ebook.section?.name || "N/A"}</TableCell>
+                <TableCell sx={{ padding: "10px", borderRight: "1px solid #ccc" }}>
+                  <IconButton onClick={() => handleEditOpen(ebook)}>
+                    <EditIcon sx={{ color: "#5b320a" }} />
+                  </IconButton>
+                  <IconButton onClick={() => handleDeleteClick(ebook)}>
+                    <DeleteIcon sx={{ color: "#db2016" }} />
+                  </IconButton>
+                </TableCell>
               </TableRow>
-            </TableHead>
-            <TableBody>
-              {filteredBooks.map((ebook) => (
-                <TableRow key={ebook._id}>
-                  <TableCell>{ebook.name}</TableCell>
-                  <TableCell>{ebook.authors.join(", ")}</TableCell>
-                  <TableCell>{ebook.section?.name}</TableCell>
-                  <TableCell>
-                    <IconButton
-                      onClick={() => handleEditOpen(ebook)}
-                      color="primary"
-                    >
-                      <EditIcon />
-                    </IconButton>
-                    <IconButton
-                      onClick={() => handleDeleteClick(ebook)}
-                      color="error"
-                    >
-                      <DeleteIcon />
-                    </IconButton>
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
-      ) : (
-        <Typography variant="body1" sx={{ marginTop: 2 }}>
-          No E-books found.
-        </Typography>
-      )}
-      <Modal open={open} onClose={handleEditClose}>
-        <Box
-          sx={{
-            position: "absolute",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-            width: 400,
-            bgcolor: "background.paper",
-            boxShadow: 24,
-            p: 4,
-          }}
-        >
-          <IconButton
-            aria-label="close"
-            onClick={handleEditClose}
-            sx={{
-              position: "absolute",
-              right: 8,
-              top: 8,
-              color: (theme) => theme.palette.grey[500],
-            }}
-          >
-            <CloseIcon />
-          </IconButton>
-          <Typography sx={{ marginBottom: 2 }} variant="h6" component="h2">
-            Edit E-book
-          </Typography>
-          <TextField
-            label="E-book Name"
-            name="name"
-            value={editEbook?.name || ""}
-            onChange={handleEditChange}
-            sx={{ marginBottom: 2 }}
-            fullWidth
-            required
-          />
-          <TextField
-            label="Content"
-            name="content"
-            value={editEbook?.content || ""}
-            onChange={handleEditChange}
-            sx={{ marginBottom: 2 }}
-            fullWidth
-            required
-          />
-          <TextField
-            label="Authors (comma separated)"
-            name="authors"
-            value={editEbook?.authors || ""}
-            onChange={handleEditChange}
-            sx={{ marginBottom: 2 }}
-            fullWidth
-            required
-          />
-          <TextField
-            select
-            label="Section"
-            name="section"
-            value={editEbook?.section || ""}
-            onChange={handleEditChange}
-            sx={{ marginBottom: 2 }}
-            fullWidth
-            required
-          >
-            {sections.map((section) => (
-              <MenuItem key={section._id} value={section._id}>
-                {section.name}
-              </MenuItem>
             ))}
-          </TextField>
-          <Button
-            onClick={updateEbook}
-            variant="contained"
-            color="primary"
-            sx={{ marginRight: 2 }}
-          >
-            Save
-          </Button>
-          <Button
-            onClick={handleEditClose}
-            variant="contained"
-            color="secondary"
-          >
-            Cancel
-          </Button>
-        </Box>
-      </Modal>
+          </TableBody>
+        </Table>
+      </TableContainer>
+      <div style={{ height: '100px' }}></div>
+
       <Dialog
-        open={openDialog}
-        onClose={handleCloseDialog}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
-      >
-        <DialogTitle id="alert-dialog-title">{"Confirm Delete"}</DialogTitle>
+  open={open}
+  onClose={handleEditClose}
+  PaperProps={{
+    sx: {
+      bgcolor: "#FFF3E0", // Light Peach
+      padding: 3,
+      boxShadow: 3,
+      border: "2px solid #d28b19", // Dark Yellow
+    },
+  }}
+>
+  <DialogTitle sx={{ color: "#5b320a", fontWeight: 500 }}>
+    Edit E-book
+  </DialogTitle><div></div>
+  <DialogContent>
+    <TextField
+      label="E-book Name"
+      name="name"
+      value={editEbook?.name || ""}
+      onChange={handleEditChange}
+      fullWidth
+      sx={{
+        marginBottom: 2,
+        bgcolor: "#FFF3E0", // Light Peach
+        boxShadow: 1,
+      }}
+      InputLabelProps={{
+        style: { color: "#5b320a" }, // Dark Brown label
+      }}
+      InputProps={{
+        style: { color: "#5b320a" }, // Dark Brown text
+      }}
+    />
+    <TextField
+      label="Content"
+      name="content"
+      value={editEbook?.content || ""}
+      onChange={handleEditChange}
+      fullWidth
+      sx={{
+        marginBottom: 2,
+        bgcolor: "#FFF3E0", // Light Peach
+        boxShadow: 1,
+      }}
+      InputLabelProps={{
+        style: { color: "#5b320a" }, // Dark Brown label
+      }}
+      InputProps={{
+        style: { color: "#5b320a" }, // Dark Brown text
+      }}
+    />
+    <TextField
+      label="Authors (comma separated)"
+      name="authors"
+      value={editEbook?.authors.join(", ") || ""}
+      onChange={handleEditChange}
+      fullWidth
+      sx={{
+        marginBottom: 2,
+        bgcolor: "#FFF3E0", // Light Peach
+        boxShadow: 1,
+      }}
+      InputLabelProps={{
+        style: { color: "#5b320a" }, // Dark Brown label
+      }}
+      InputProps={{
+        style: { color: "#5b320a" }, // Dark Brown text
+      }}
+    />
+    <TextField
+      select
+      label="Section"
+      name="section"
+      value={editEbook?.section || ""}
+      onChange={handleEditChange}
+      fullWidth
+      sx={{
+        marginBottom: 2,
+        bgcolor: "#FFF3E0", // Light Peach
+        boxShadow: 1,
+      }}
+      InputLabelProps={{
+        style: { color: "#5b320a" }, // Dark Brown label
+      }}
+      InputProps={{
+        style: { color: "#5b320a" }, // Dark Brown text
+      }}
+    >
+      {sections.map((section) => (
+        <MenuItem key={section._id} value={section._id}>
+          {section.name}
+        </MenuItem>
+      ))}
+    </TextField>
+  </DialogContent>
+  <DialogActions>
+    <Button
+      onClick={handleEditClose}
+      sx={{
+        color: "#db2016", // Red for cancel
+        
+        '&:hover': {
+          backgroundColor: "#f8d2d1",
+        },
+      }}
+    >
+      Cancel
+    </Button>
+    <Button
+      onClick={updateEbook}
+      sx={{
+        color: "#FFF",
+        backgroundColor: "#613e0a",
+        '&:hover': {
+          backgroundColor: "#f4e2d3", 
+          color:"#613e0a"// Light brown on hover
+        },
+      }}
+    >
+      Update
+    </Button>
+  </DialogActions>
+</Dialog>
+
+
+      <Dialog open={openDialog} onClose={handleCloseDialog}>
+        <DialogTitle>Confirm Deletion</DialogTitle>
         <DialogContent>
-          <DialogContentText id="alert-dialog-description">
-            Are you sure you want to delete this ebook ?
+          <DialogContentText>
+            Are you sure you want to delete this e-book?
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleCloseDialog} color="primary">
+          <Button onClick={handleCloseDialog} color="secondary">
             Cancel
           </Button>
-          <Button onClick={handleDeleteConfirm} color="error" autoFocus>
+          <Button onClick={handleDeleteConfirm} color="primary">
             Confirm
           </Button>
         </DialogActions>
